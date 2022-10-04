@@ -59,8 +59,19 @@ def evaluate(model, history):
     plt.legend()
     plt.show()
 
-# Experiment 1 - Stochastic Gradient Descent (batch_size=1)
+# Experiment 1 - Stochastic Gradient Descent (batch_size=1) i.e one sample at a time
 %%timeit -n 1 -r 1
 model, history = fit_model(batch_size=1)
+evaluate(model, history)
+
+
+# Experiment 2 - Batcg Gradient Descent (batch_size=n) i.e using all data at once
+%%timeit -n 1 -r 1
+model, history = fit_model(batch_size=train_size)
+evaluate(model, history)
+
+# Experiment 3 - Mini-Batch Gradient Descent (batch_size=32) i.e some data at once
+%%timeit -n 1 -r 1
+model, history = fit_model(batch_size=32)
 evaluate(model, history)
 
